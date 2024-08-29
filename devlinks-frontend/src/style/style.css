@@ -1,0 +1,71 @@
+/* Hide scrollbar for WebKit browsers */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  background-color: white;
+  color: white;
+  padding: 10px 0;
+}
+
+main {
+  padding: 20px;
+  text-align: center;
+}
+
+.intro {
+  margin-top: 50px;
+}
+
+.intro h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.intro p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.cta-buttons .btn {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 10px 20px;
+  background-color: white;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.intro-full-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+footer {
+  /* border-radius: 5px; */
+  text-align: center;
+  padding: 1px 0;
+  background-color: #6c63ff;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 120%;
+  margin-left: -180px;
+  height: 8%;
+}
+
+.footer-fixed {
+  position: fixed;
+  bottom: 0;
+}

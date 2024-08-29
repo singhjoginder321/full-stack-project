@@ -1,0 +1,60 @@
+# Node modules
+devlinks-frontend/node_modules/
+devlinks-backend/node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+devlinks-frontend/build/
+devlinks-frontend/.next/
+devlinks-backend/build/
+devlinks-backend/dist/
+
+# Environment files
+devlinks-frontend/.env
+devlinks-backend/.env
+devlinks-frontend/.env.local
+devlinks-backend/.env.local
+devlinks-frontend/.env.development
+devlinks-backend/.env.development
+devlinks-frontend/.env.test
+devlinks-backend/.env.test
+devlinks-frontend/.env.production
+devlinks-backend/.env.production
+
+# IDE and editor specific files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Coverage directory
+coverage/
+
+# Misc
+*.swp
+*.swo
+*.tmp
+*.bak
+*.pid
+*.gz
+
+# Build artifacts
+*.tar
+*.zip
+*.rar
+*.7z
+*.tgz
+
+

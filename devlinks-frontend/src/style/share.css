@@ -1,0 +1,172 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #d0dae8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+  margin: 0;
+}
+
+.left {
+  margin-top: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.smartphone {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 320px;
+  height: auto;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-container img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.profile-container .name {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 22px;
+  border-radius: 5px;
+  box-shadow: 0px 1px 1px rgb(241, 236, 236);
+  padding: 7px;
+  margin: 9px 0;
+}
+
+.profile-container .email {
+  font-family: cursive;
+  margin-top: 4px;
+}
+
+.links {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.links li {
+  margin: 10px 0;
+}
+
+.links a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+  text-align: center;
+}
+
+.links .github {
+  background-color: #333;
+}
+.links .linkedin {
+  background-color: #0077b5;
+}
+.links .youtube {
+  background-color: #ff0000;
+}
+.links .facebook {
+  background-color: #316ff6;
+}
+.links .gitlab {
+  background-color: #fc6d26;
+}
+
+.links a:hover {
+  opacity: 0.8;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.profile-details-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 6px;
+}
+
+.email-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.email-form label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.email-form input {
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 10px;
+}
+
+.email-form button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  width: 250px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.email-form button:hover {
+  background-color: #0056b3;
+}
+
+.share-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.share-button:hover {
+  background-color: #218838;
+}
+
+@media (max-width: 600px) {
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .smartphone {
+    width: auto;
+    margin-left: 17px;
+  }
+}

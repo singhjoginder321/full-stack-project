@@ -1,0 +1,11 @@
+.main-div {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
+.intro-main {
+  /* display: flex; */
+  /* flex-direction: column; */
+}

@@ -1,0 +1,115 @@
+/* Existing CSS */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+}
+
+#navbar {
+  margin-top: 8px;
+  /* border: 3px solid red; */
+  width: 99vw;
+  background-color: white;
+  border-radius: 6px;
+  /* padding: 10px 20px; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+}
+
+#navbar .logo {
+  position: absolute;
+  left: 20px;
+  color: black;
+}
+
+#navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+#navbar ul li {
+  margin: 0 10px;
+}
+
+#navbar .logo img {
+  width: 7em; /* Adjust the width as needed */
+  height: auto;
+}
+
+#navbar ul li a {
+  color: rgb(99 60 255);
+  text-decoration: none;
+  padding: 8px 16px;
+  transition: background-color 0.3s;
+  border-radius: 4px;
+  font-size: 0.6em;
+  font-weight: bold;
+  background-color: rgb(235, 230, 255);
+}
+
+#navbar ul li a:hover {
+  background-color: rgb(99 60 255);
+  color: white;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.active {
+  /* background-color: rgb(139, 131, 172); */
+  /* color: white; */
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.link-icon {
+  width: 20px; /* Adjust the size as needed */
+  height: auto;
+  margin-right: 8px; /* Space between the icon and the text */
+  vertical-align: middle; /* Align the icon vertically with the text */
+}
+
+.preview {
+  position: absolute;
+  right: 20px;
+  background-color: white;
+  border: 1px solid rgb(99 60 255);
+  border-radius: 3px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #4a90e2;
+  top: 11px;
+  font-size: 0.7em;
+  margin-top: 20px;
+}
+
+.container {
+  margin-top: 80px;
+  padding: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  #navbar .logo {
+    display: none;
+  }
+
+  #navbar ul {
+    margin-left: -80px;
+  }
+}

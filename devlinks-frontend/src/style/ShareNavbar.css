@@ -1,0 +1,74 @@
+/* CSS for Navbar */
+#navbar-preview {
+  margin-top: 8px;
+  /* border: 3px solid red; */
+  width: 99vw;
+  background-color: white;
+  border-radius: 6px;
+  /* padding: 10px 20px; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 62px;
+}
+
+#navbar-preview ul {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+#navbar-preview li {
+  display: inline;
+  margin: 0 20px;
+}
+
+#navbar-preview a {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #6c63ff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #6c63ff;
+  background-color: #fff;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+#navbar-preview .right-button a {
+  background-color: #6c63ff;
+  color: #fff;
+}
+
+#navbar-preview a:hover {
+  background-color: #fff;
+  color: #6c63ff;
+  border: 2px solid #6c63ff;
+}
+
+#navbar-preview .right-button a:hover {
+  background-color: #6c63ff;
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  #navbar-preview {
+    height: 56px;
+  }
+  #navbar-preview a {
+    margin: 0 10px;
+  }
+}
