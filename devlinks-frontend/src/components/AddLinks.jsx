@@ -1,44 +1,47 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import profilePictureImage from "../assets/images/profile-picture.jpeg";
-import apiService from "../services/apiService"; // Adjust the import path as needed
+import apiService from "../services/apiService";
 import "../style/add-links.css";
 import Navbar from "./Navbar";
+import Shimmer from "./Shimmer";
 
 const AddLinks = () => {
   const [links, setLinks] = useState([]);
   const [userId, setUserId] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch user details to get userId
-    const fetchUserDetails = async () => {
+    // Check if the user is authenticated
+    const checkAuthentication = async () => {
       try {
+        const token = localStorage.getItem("token"); // Or use context/state if available
+        if (!token) {
+          navigate("/login-signup"); // Redirect to login/signup if not authenticated
+          return;
+        }
+
+        // Verify token or fetch user details
         const response = await apiService.getCurrentUser();
         setUserId(response.data._id); // Assuming userId is in response.data._id
+
+        // Fetch links associated with the user
+        const linksResponse = await apiService.getLinksByUserId();
+        setLinks(linksResponse.data);
       } catch (error) {
-        console.error("Error fetching user details:", error);
-        toast.error("Failed to fetch user details.");
+        console.error("Error fetching user details or links:", error);
+        toast.error("Failed to fetch user details or links.");
+        navigate("/login-signup"); // Redirect on error
+      } finally {
+        setLoading(false); // Stop loading after data fetch
       }
     };
 
-    fetchUserDetails();
-  }, []);
-
-  useEffect(() => {
-    if (userId) {
-      // Fetch links associated with the user
-      apiService
-        .getLinksByUserId()
-        .then((response) => {
-          setLinks(response.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching links:", error);
-          toast.error("Failed to fetch links.");
-        });
-    }
-  }, [userId]);
+    checkAuthentication();
+  }, [navigate]);
 
   const handleAddLink = () => {
     // Add a new link entry with a temporary unique id
@@ -56,11 +59,12 @@ const AddLinks = () => {
 
   const handleRemoveLink = (index) => {
     const linkToRemove = links[index];
+    console.log(linkToRemove);
 
     // Check if link already exists in the database (has a MongoDB ObjectId)
-    if (linkToRemove._id) {
+    if (linkToRemove.link_id) {
       apiService
-        .deleteLink(linkToRemove._id)
+        .deleteLink(linkToRemove.link_id)
         .then(() => {
           toast.success("Link deleted!");
           setLinks(links.filter((_, i) => i !== index)); // Update the state to remove the deleted link from the UI
@@ -98,12 +102,15 @@ const AddLinks = () => {
     });
   };
 
+  if (loading) {
+    return <Shimmer />;
+  }
   return (
     <>
       <Navbar />
       <div className="full-section">
         <div className="main-section">
-          <div className="left">
+          <div className="left-addlinks">
             <div className="smartphone">
               <div className="profile-container">
                 <div className="profile-details-section">
@@ -123,7 +130,7 @@ const AddLinks = () => {
               </div>
             </div>
           </div>
-          <div className="right">
+          <div className="right-addlinks">
             <div className="container">
               <h2>Customize your links</h2>
               <span className="add-remove-para">

@@ -19,7 +19,7 @@ body {
   align-items: center;
 }
 
-.left {
+.left-addlinks {
   margin-left: 45px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -33,7 +33,7 @@ body {
   align-items: center;
 }
 
-.right {
+.right-addlinks {
   width: 60%;
   background-color: white;
   margin: 10px;
@@ -264,11 +264,11 @@ button[type="submit"] {
     flex-direction: column;
   }
 
-  .left {
+  .left-addlinks {
     width: 95%;
   }
 
-  .right {
+  .right-addlinks {
     width: 95%;
   }
 

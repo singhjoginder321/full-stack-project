@@ -1,0 +1,9 @@
+
+  migration:
+    build:
+      context: ./devlinks-backend
+      dockerfile: Dockerfile.migrate
+    env_file:
+      - ./devlinks-backend/.env  # Path to your .env file
+    depends_on:
+      - postgres

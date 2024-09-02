@@ -1,6 +1,21 @@
-version: '3'  
+version: '3'
 
 services:
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: devlinks
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      retries: 5
+      start_period: 20s
+      timeout: 5s
+
   frontend:
     build:
       context: ./devlinks-frontend
@@ -8,7 +23,7 @@ services:
     ports:
       - "5173:5173"
     # volumes:
-      # - ./devlinks-frontend:/app
+    # - ./devlinks-frontend:/app
     environment:
       - CHOKIDAR_USEPOLLING=true # Useful for live reloading in Docker
 
@@ -20,5 +35,19 @@ services:
       - "8001:8001"
     env_file:
       - ./devlinks-backend/.env  # Path to your .env file
+    depends_on:
+      postgres:
+        condition: service_healthy
 
-  # Remove the mongo service if it's not needed
+  migration:
+    build:
+      context: ./devlinks-backend
+      dockerfile: Dockerfile.migrate
+    env_file:
+      - ./devlinks-backend/.env  # Path to your .env file
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

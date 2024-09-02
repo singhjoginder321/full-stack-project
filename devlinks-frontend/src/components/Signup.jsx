@@ -1,20 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import uploadImageIcon from "../assets/images/image-icon.png";
 import Loader from "../components/Loader"; // Import your Loader component
 import apiService from "../services/apiService";
 
-const Signup = () => {
+const Signup = ({ onSuccess, onFailure }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [otp, setOtp] = useState(""); // State to store OTP
+  const [otp, setOtp] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
-  const [otpSent, setOtpSent] = useState(false); // State to track OTP sent status
-  const [isLoading, setIsLoading] = useState(false); // State to track loading
+  const [otpSent, setOtpSent] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleProfilePictureChange = (e) => {
     console.log("IMAGE UPLOADED");
@@ -24,11 +27,12 @@ const Signup = () => {
       setSelectedImage(URL.createObjectURL(file));
     }
   };
+
   const handleSendOtp = async () => {
     setIsLoading(true); // Show loader
     try {
       await apiService.sendOtp({ email });
-      setOtpSent(true); // Update the state to indicate OTP is sent
+      setOtpSent(true);
       toast.success("OTP sent to your email!");
     } catch (error) {
       console.error("Error sending OTP:", error);
@@ -58,23 +62,38 @@ const Signup = () => {
     formData.append("email", email);
     formData.append("password", password);
     formData.append("profilePicture", profilePicture);
-    formData.append("otp", otp); // Include OTP in form data
+    formData.append("otp", otp);
 
     try {
-      console.log("FormData Contents:");
-      formData.forEach((value, key) => {
-        console.log(key, value);
-      });
-
       await apiService.register(formData); // Use the apiService to make the API call
       toast.success("Signup successful!");
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      setOtp("");
+      setProfilePicture(null);
+      setSelectedImage(null);
+      setOtpSent(false);
+
+      // Notify the parent component of success
+      if (onSuccess) {
+        onSuccess();
+      }
+
+      // Optionally, you can toggle to the login view programmatically if needed
+      // navigate("/login"); // Uncomment if you want to navigate automatically
     } catch (error) {
       console.error("Error during signup:", error);
-
       const errorMessage =
         error.response?.data?.message || "Signup failed. Please try again.";
-
       toast.error(errorMessage);
+
+      // Notify the parent component of failure
+      if (onFailure) {
+        onFailure();
+      }
     }
   };
 
@@ -91,25 +110,15 @@ const Signup = () => {
             accept="image/*"
             onChange={handleProfilePictureChange}
           />
-          {/* <label htmlFor="profile-picture" className="upload-button">
-            <img
-              src={uploadImageIcon}
-              alt="Upload Icon"
-              className="upload-icon"
-            />
-            <span>+ Upload Image</span>
-          </label> */}
           <label htmlFor="profile-picture" className="upload-button">
             {selectedImage ? (
-              // Show the uploaded image if one is selected
               <img
                 src={selectedImage}
                 alt="Uploaded Profile"
                 className="upload-icon"
-                style={{ width: "100px", height: "100px", objectFit: "cover" }} // Adjust size and styling as needed
+                style={{ width: "100px", height: "100px", objectFit: "cover" }}
               />
             ) : (
-              // Otherwise, show the upload icon
               <>
                 <img
                   src={uploadImageIcon}
@@ -155,7 +164,6 @@ const Signup = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-
       <div className="form-group">
         <label htmlFor="password">Password*</label>
         <input
@@ -176,7 +184,7 @@ const Signup = () => {
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </div>
-      {otpSent && ( // Conditionally render OTP field
+      {otpSent && (
         <div className="form-group">
           <label htmlFor="otp">Enter OTP*</label>
           <input
@@ -190,8 +198,7 @@ const Signup = () => {
       )}
       <div className="submit-button">
         <button type="submit" disabled={isLoading}>
-          {isLoading ? <Loader info="OTP" /> : otpSent ? "Sign Up" : "Send OTP"}{" "}
-          {/* Change button text based on OTP status */}
+          {isLoading ? <Loader info="OTP" /> : otpSent ? "Sign Up" : "Send OTP"}
         </button>
       </div>
     </form>

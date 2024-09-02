@@ -23,8 +23,5 @@ RUN npm run build
 # Expose the port the app runs on
 EXPOSE 8001
 
-ENV NODE_ENV=production
-ENV DATABASE_URL=postgres://postgres:mysecretpassword@host.docker.internal:5432/devlinks
-
-# Command to run the application
-CMD ["node", "dist/server.js"]
+# Default command to run migrations
+CMD ["sh", "-c", "npx knex migrate:latest --env development && npx knex seed:run --env development"]

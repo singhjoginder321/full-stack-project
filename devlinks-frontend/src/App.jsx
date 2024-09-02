@@ -3,10 +3,12 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import AddLinks from "./components/AddLinks";
 import Footer from "./components/Footer";
 import Intro from "./components/Intro";
+import LoginSignupPage from "./components/LoginSignupPage";
 import Navbar from "./components/Navbar";
 import Profile from "./components/Profile";
 import Share from "./components/Share";
 import ShareNavbar from "./components/ShareNavbar";
+import Shimmer from "./components/Shimmer";
 import "./style/style.css";
 // import { useLocation } from "react-router-dom";
 
@@ -36,6 +38,8 @@ function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/add-links" element={<AddLinks />} />
               <Route path="/share" element={<Share />} />
+              <Route path="login-signup" element={<LoginSignupPage />} />
+              <Route path="shimmer" element={<Shimmer />} />
             </Routes>
           </div>
         </div>

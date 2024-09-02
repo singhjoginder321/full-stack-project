@@ -9,14 +9,14 @@ body {
   margin: 0;
 }
 
-.left {
+.left-share {
   margin-top: 45px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.smartphone {
+.smartphone-share {
   margin-top: 40px;
   margin-bottom: 40px;
   width: 320px;
@@ -74,19 +74,19 @@ body {
   text-align: center;
 }
 
-.links .github {
+.links .GitHub {
   background-color: #333;
 }
-.links .linkedin {
+.links .LinkedIn {
   background-color: #0077b5;
 }
-.links .youtube {
+.links .YouTube {
   background-color: #ff0000;
 }
-.links .facebook {
+.links .Facebook {
   background-color: #316ff6;
 }
-.links .gitlab {
+.links .GitLab {
   background-color: #fc6d26;
 }
 
@@ -165,7 +165,7 @@ body {
     box-sizing: border-box;
   }
 
-  .smartphone {
+  .smartphone-share {
     width: auto;
     margin-left: 17px;
   }

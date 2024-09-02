@@ -6,9 +6,32 @@ import "../style/profile.css";
 import Login from "./Login";
 import Navbar from "./Navbar";
 import Signup from "./Signup";
+import { useNavigate } from "react-router-dom";
+import Shimmer from "./Shimmer";
 
 const Profile = () => {
   const [isSignup, setIsSignup] = useState(true); // Toggle between signup and login
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // Hook for navigation
+
+  useState(() => {
+    const timer = setTimeout(() => {
+      setLoading(false); // Set loading to false after 2 seconds
+    }, 200);
+
+    return () => clearTimeout(timer); // Cleanup timer
+  }, []);
+  const handleSignupSuccess = () => {
+    setIsSignup(false); // Switch to login view
+  };
+
+  const handleLoginSuccess = () => {
+    navigate("/add-links"); // Navigate to /add-links route
+  };
+
+  if (loading) {
+    return <Shimmer />;
+  }
 
   return (
     <>
@@ -25,27 +48,27 @@ const Profile = () => {
                 </div>
                 <ul className="links">
                   <li>
-                    <a href="#" className="github">
+                    <a href="#" className="GitHub">
                       GitHub
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="linkedin">
+                    <a href="#" className="LinkedIn">
                       LinkedIn
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="youtube">
+                    <a href="#" className="YouTube">
                       YouTube
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="facebook">
+                    <a href="#" className="Facebook">
                       Facebook
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="gitlab">
+                    <a href="#" className="GitLab">
                       GitLab
                     </a>
                   </li>
@@ -70,7 +93,11 @@ const Profile = () => {
                 </button>
               </div>
               <h2>{isSignup ? "Sign Up" : "Login"}</h2>
-              {isSignup ? <Signup /> : <Login />}
+              {isSignup ? (
+                <Signup onSuccess={handleSignupSuccess} />
+              ) : (
+                <Login onSuccess={handleLoginSuccess} />
+              )}
             </div>
           </div>
         </div>

@@ -1,0 +1,216 @@
+/* Full-Screen Shimmer Container */
+.shimmer-fullscreen {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+/* Shimmer for Navbar */
+.shimmer-navbar {
+  height: 60px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer Content Wrapper */
+.shimmer-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Shimmer for Mobile Preview Section */
+.shimmer-mobile-preview {
+  width: 36%;
+  margin: 20px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.shimmer-avatar {
+  margin: 20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 56%;
+  background: #e0e0e0;
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-name,
+.shimmer-info {
+  width: 80%;
+  height: 20px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-mobile-link {
+  width: 100%;
+  height: 40px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer for Customize Links Section */
+.shimmer-customize {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.shimmer-section-title {
+  width: 50%;
+  height: 25px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-input {
+  width: 100%;
+  height: 40px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-link-edit {
+  width: 100%;
+  height: 60px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Common Shimmer Animation */
+.shimmer-avatar::before,
+.shimmer-name::before,
+.shimmer-info::before,
+.shimmer-mobile-link::before,
+.shimmer-navbar::before,
+.shimmer-section-title::before,
+.shimmer-input::before,
+.shimmer-link-edit::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -150%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  /* Adjust content layout for tablets */
+  .shimmer-content {
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .shimmer-mobile-preview {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .shimmer-customize {
+    width: 100%;
+  }
+
+  .shimmer-avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .shimmer-name,
+  .shimmer-info {
+    width: 90%;
+    height: 18px;
+  }
+
+  .shimmer-mobile-link,
+  .shimmer-input,
+  .shimmer-link-edit {
+    height: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Adjust content layout for mobile phones */
+  .shimmer-content {
+    flex-direction: column;
+    padding: 5px;
+    gap: 5px;
+  }
+
+  .shimmer-mobile-preview {
+    width: 100%;
+    margin: 5px 0;
+    padding: 15px;
+  }
+
+  .shimmer-customize {
+    width: 100%;
+  }
+
+  .shimmer-avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .shimmer-name,
+  .shimmer-info {
+    width: 100%;
+    height: 15px;
+  }
+
+  .shimmer-mobile-link,
+  .shimmer-input,
+  .shimmer-link-edit {
+    height: 30px;
+  }
+
+  .shimmer-section-title {
+    width: 70%;
+    height: 20px;
+  }
+}

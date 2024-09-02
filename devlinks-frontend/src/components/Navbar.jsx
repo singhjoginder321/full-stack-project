@@ -15,18 +15,19 @@ const Navbar = () => {
           </Link>
         </div>
         <ul>
-          <li id="button-1">
-            <Link to="/add-links">
-              <img src={linkIcon} alt="Links Icon" className="link-icon" />
-              Links
-            </Link>
-          </li>
           <li id="button-2">
             <Link to="/profile">
               <img src={userIcon} alt="Links Icon" className="link-icon" />
               Profile Details
             </Link>
           </li>
+          <li id="button-1">
+            <Link to="/add-links">
+              <img src={linkIcon} alt="Links Icon" className="link-icon" />
+              Links
+            </Link>
+          </li>
+
           <li>
             <Link className="preview" to="/share">
               Preview

@@ -50,6 +50,8 @@ const apiService = {
 
   logout: () => apiClient.post("/auth/logout"),
 
+  resetPassword: (email) => apiClient.post("/auth/reset-password", email),
+
   getCurrentUser: () => apiClient.get("/users/me"),
 
   updateUser: (userData) => apiClient.put("/users/me", userData),
